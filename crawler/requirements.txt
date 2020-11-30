@@ -31,6 +31,7 @@ pytest==0.0.0
 pytest-runner==5.2
 pywin32==227
 queuelib==1.5.0
+schedule==0.6.0
 Scrapy @ file:///C:/ci/scrapy_1602504122146/work
 service-identity @ file:///tmp/build/80754af9/service_identity_1592494375577/work
 six @ file:///C:/ci/six_1605187374963/work

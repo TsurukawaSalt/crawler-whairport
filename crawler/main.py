@@ -3,8 +3,6 @@ import os
 import time
 import datetime
 
-# 定时爬取
-
 
 def crawl_dep():
     cmd = 'scrapy crawl dep_info -o dep_info_' + datetime.datetime.today().strftime('%Y%m%d') + ".json"
@@ -16,10 +14,12 @@ def crawl_arr():
     os.system(cmd)
 
 
+'''定时每日 10:00 爬取'''
 schedule.every().day.at("10:00").do(crawl_dep)
 schedule.every().day.at("10:00").do(crawl_arr)
 
 while True:
-    print("heart beat")
+    print("Ten seconds later......")
     schedule.run_pending()
+    # 等待十秒
     time.sleep(10)

@@ -17,16 +17,16 @@ class DepSpider(scrapy.Spider):
         super().__init__(**kwargs)
         # 获取今日日期 设置url
         self.date = datetime.date.today().strftime('%Y%m%d')
-        print(self.date)
+        # print(self.date)
 
     def start_requests(self):
+        # 拼接url
         target_url = self.header + self.page + self.mid + self.date + self.tail
         yield scrapy.Request(target_url, callback=self.parse)
 
     def parse(self, response):
         basic_info_list = response.xpath("//div[@class='flight-info-basic-link']")
         detail_info_list = response.xpath("//div[@class='tr-like flight-info-detail']")
-        # items=[]
 
         for basic_info, detail_info in zip(basic_info_list, detail_info_list):
             item = DepItem()
@@ -39,7 +39,7 @@ class DepSpider(scrapy.Spider):
             check_in_counter = basic_info.xpath(".//div[@id='column6-1']/strong/text()").extract()
             boarding_gate = basic_info.xpath(".//strong[@id='column7-1']/text()").extract()
             state = basic_info.xpath(".//span[@id='column8-1']/text()").extract()
-            # 赋值
+            # 存在为空的信息
             item['flight_number'] = flight_number[0]
             if stopover_station[0] == '\xa0':
                 item['stopover_station'] = '无'
@@ -79,11 +79,13 @@ class DepSpider(scrapy.Spider):
 
         page_node = response.xpath(".//li[contains(@class,'pagenation-list-item on')]")
         current_page = page_node[0].xpath("./a/text()").extract_first()
-        print("current page: " + current_page)
         next_page = int(current_page) + 1
         # 查看 最后一页 的javaScript
         end_sign = response.xpath(".//a[@class='ico next']/@href").extract_first()
-        print(end_sign)
         if end_sign != "javascript:void(0);":
+            # 表示并非最后一页
             next_url = self.header + str(next_page) + self.mid + self.date + self.tail
             yield scrapy.Request(next_url, callback=self.parse)
+        else:
+            # 最后一页
+            print("total " + current_page + ' pages.')

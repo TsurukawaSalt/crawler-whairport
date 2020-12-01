@@ -6,15 +6,11 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-import os
-import codecs
-import json
-import datetime
-from crawler.dep_info import DepItem
-from crawler.arr_info import ArrItem
 
 
 class CrawlerPipeline:
+    def process_item(self, item, spider):
+        return item
     # def __init__(self):
     #     self.json_file = codecs.open(datetime.datetime.now().strftime('%Y-%m-%d') + '.json', 'w+', encoding='UTF-8')
     #
@@ -31,5 +27,3 @@ class CrawlerPipeline:
     #     self.json_file.truncate()
     #     self.json_file.write('\n]')
     #     self.json_file.close()
-    def process_item(self, item, spider):
-        return item

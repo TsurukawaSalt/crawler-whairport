@@ -12,4 +12,4 @@ class DepItem(scrapy.Item):
     check_in_counter = scrapy.Field()  # 值机柜台
     boarding_gate = scrapy.Field()  # 登机口
     state = scrapy.Field()  # 状态
-    flight_time = scrapy.Field()  # 实际飞行时间
+    flight_time = scrapy.Field()  # 预计飞行时间

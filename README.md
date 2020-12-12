@@ -1,8 +1,6 @@
 # :spider: crawler-whairport
 
-This is my first web-crawler program, used to crawl the data from 'http://www.whairport.com/'.
-
-
+This is my first web-crawler program, used to crawl the data from `http://www.whairport.com/`.
 
 ## :book: Usage
 
@@ -21,9 +19,9 @@ python main.py
 
 生成两份文件：
 
-1. `dep_info_[yyyymmdd]`：武汉天河国际机场国内机场出发时间表
+1. `dep_info_{yyyymmdd}`：武汉天河国际机场国内机场出发时间表
 
-2. `arr_info_[yyyymmdd]`：武汉天河国际机场国内机场到达时间表
+2. `arr_info_{yyyymmdd}`：武汉天河国际机场国内机场到达时间表
 
 #### :writing_hand: 自定义
 
@@ -37,10 +35,8 @@ scrapy crawl dep_info -o {file_name.json}
 # 输出当天武汉天河国际机场国内机场到达时间表
 scrapy crawl arr_info -o {file_name.json}
 
-#  以上，file_name为输出的文件名
+# 以上，file_name为输出的文件名
 ```
-
-
 
 ## :open_file_folder: Requirements
 
